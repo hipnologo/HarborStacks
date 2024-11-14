@@ -68,7 +68,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 ## 🏗 Project Structure
 
 ```
-harborstacks/
+HarborStacks/
 ├── app/                    # Next.js app router pages
 ├── components/            # React components
 │   ├── ui/               # Reusable UI components
@@ -152,14 +152,14 @@ limitations under the License.
 
 - [Website](https://harborstacks.dev)
 - [Documentation](https://docs.harborstacks.dev)
-- [Docker Hub](https://hub.docker.com/r/harborstacks)
-- [Issue Tracker](https://github.com/hipnologo/harborstacks/issues)
+- [Docker Hub](https://hub.docker.com/r/HarborStacks)
+- [Issue Tracker](https://github.com/hipnologo/HarborStacks/issues)
 
 ## 📊 Status
 
-- [![Build Status](https://img.shields.io/github/workflow/status/hipnologo/harborstacks/CI)](https://github.com/hipnologo/harborstacks/actions)
-- [![Coverage Status](https://img.shields.io/codecov/c/github/hipnologo/harborstacks)](https://codecov.io/gh/hipnologo/harborstacks)
-- [![Last Commit](https://img.shields.io/github/last-commit/hipnologo/harborstacks)](https://github.com/hipnologo/harborstacks/commits/main)
+- [![Build Status](https://img.shields.io/github/workflow/status/hipnologo/HarborStacks/CI)](https://github.com/hipnologo/HarborStacks/actions)
+- [![Coverage Status](https://img.shields.io/codecov/c/github/hipnologo/HarborStacks)](https://codecov.io/gh/hipnologo/HarborStacks)
+- [![Last Commit](https://img.shields.io/github/last-commit/hipnologo/HarborStacks)](https://github.com/hipnologo/HarborStacks/commits/main)
 
 ---
 
