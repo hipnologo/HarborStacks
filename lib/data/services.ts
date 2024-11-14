@@ -1,0 +1,61 @@
+import { Database, Cloud, Monitor, Lock, Package, Boxes } from "lucide-react";
+import { ServiceCategory, Service } from "@/lib/types/services";
+
+export const categories: ServiceCategory[] = [
+  { id: "all", label: "All Services", icon: Boxes },
+  { id: "databases", label: "Databases", icon: Database },
+  { id: "messaging", label: "Messaging", icon: Cloud },
+  { id: "monitoring", label: "Monitoring", icon: Monitor },
+  { id: "security", label: "Security", icon: Lock },
+];
+
+export const services: Service[] = [
+  {
+    id: "traefik",
+    name: "Traefik & Portainer",
+    description: "Modern reverse proxy and container management with automatic SSL",
+    category: "security",
+    requiresConfig: ["domain", "email"],
+    popular: true,
+  },
+  {
+    id: "chatwoot",
+    name: "Chatwoot",
+    description: "Open-source customer engagement suite with live chat and email support",
+    category: "messaging",
+    requiresConfig: ["domain", "email", "smtp"],
+    popular: true,
+  },
+  {
+    id: "minio",
+    name: "MinIO",
+    description: "High-performance S3 compatible object storage for modern data lakes",
+    category: "databases",
+    requiresConfig: ["domain"],
+    popular: false,
+  },
+  {
+    id: "n8n",
+    name: "n8n",
+    description: "Powerful workflow automation tool with visual programming",
+    category: "automation",
+    requiresConfig: ["domain", "smtp"],
+    popular: true,
+  },
+  {
+    id: "prometheus",
+    name: "Prometheus Stack",
+    description: "Complete monitoring solution with Grafana dashboards",
+    category: "monitoring",
+    requiresConfig: ["domain"],
+    popular: true,
+  },
+  {
+    id: "postgres",
+    name: "PostgreSQL",
+    description: "Advanced open-source database with automatic backups",
+    category: "databases",
+    requiresConfig: ["password", "backup_path"],
+    popular: true,
+  }
+];
