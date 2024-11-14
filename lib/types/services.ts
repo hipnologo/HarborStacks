@@ -7,10 +7,32 @@ export interface ServiceCategory {
 }
 
 export interface Service {
-  id: string;
-  name: string;
-  description: string;
-  category: string;
-  requiresConfig: string[];
-  popular: boolean;
+  id: string
+  name: string
+  description: string
+  category: string
+  popular?: boolean
+  requirements: string[]
+  configSteps: ConfigStep[]
+  installSteps: string[]
+}
+
+export interface ConfigStep {
+  title: string
+  description?: string
+  fields: ConfigField[]
+}
+
+export interface ConfigField {
+  name: string
+  label: string
+  type: 'text' | 'email' | 'password' | 'number'
+  placeholder?: string
+  required?: boolean
+  validation?: {
+    pattern?: string
+    min?: number
+    max?: number
+    message?: string
+  }
 }
