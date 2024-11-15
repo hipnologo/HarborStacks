@@ -1,12 +1,10 @@
-'use client'
+'use client';
 
-import { Search } from 'lucide-react'
-import { Input } from '@/components/ui/input'
-import { useStore } from '@/lib/store'
+import { Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { SearchHeaderProps } from '@/lib/types/props'; // Import props type
 
-export function SearchHeader() {
-  const { searchQuery, setSearchQuery } = useStore()
-
+export function SearchHeader({ searchQuery, onSearchChange }: SearchHeaderProps) {
   return (
     <div className="flex items-center space-x-4 mb-8">
       <div className="relative flex-1">
@@ -15,10 +13,10 @@ export function SearchHeader() {
           type="text"
           placeholder="Search services..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => onSearchChange(e.target.value)}
           className="pl-10"
         />
       </div>
     </div>
-  )
+  );
 }

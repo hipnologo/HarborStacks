@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { categories, services } from "@/lib/data/services";
 import { CategoryFilter } from "@/components/services/category-filter";
-import { SearchHeader } from "@/components/services/search-header";
+import { SearchHeader } from "@/components/services/search-header"; // Use this if it's already defined externally
 import { ServiceCard } from "@/components/services/service-card";
 import { ServiceGrid } from "@/components/services/service-grid";
 
@@ -22,12 +22,10 @@ export default function ServicesPage() {
   });
 
   const handleInstall = (serviceId: string) => {
-    // Will be implemented in the next step
     console.log("Installing service:", serviceId);
   };
 
   const handleLearnMore = (serviceId: string) => {
-    // Will be implemented in the next step
     console.log("Learn more about service:", serviceId);
   };
 
