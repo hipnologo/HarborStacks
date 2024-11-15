@@ -3,14 +3,17 @@
 import { useState } from "react";
 import { categories, services } from "@/lib/data/services";
 import { CategoryFilter } from "@/components/services/category-filter";
-import { SearchHeader } from "@/components/services/search-header"; // Use this if it's already defined externally
+import { SearchHeader } from "@/components/services/search-header";
 import { ServiceCard } from "@/components/services/service-card";
 import { ServiceGrid } from "@/components/services/service-grid";
+import { InstallationModal } from "@/components/installers/installation-modal";
+import { useInstallation } from "@/lib/context/installation";
 
 export default function ServicesPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const { startInstallation } = useInstallation();
 
   const filteredServices = services.filter((service) => {
     const matchesCategory =
@@ -22,37 +25,39 @@ export default function ServicesPage() {
   });
 
   const handleInstall = (serviceId: string) => {
-    console.log("Installing service:", serviceId);
-  };
-
-  const handleLearnMore = (serviceId: string) => {
-    console.log("Learn more about service:", serviceId);
+    const service = services.find(s => s.id === serviceId);
+    if (service) {
+      startInstallation(service);
+    }
   };
 
   return (
-    <div className="h-full space-y-8">
-      <SearchHeader
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        onToggleAdvanced={() => setShowAdvanced(!showAdvanced)}
-      />
+    <>
+      <div className="h-full space-y-8">
+        <SearchHeader
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          onToggleAdvanced={() => setShowAdvanced(!showAdvanced)}
+        />
 
-      <CategoryFilter
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onSelectCategory={setSelectedCategory}
-      />
+        <CategoryFilter
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        /> 
 
-      <ServiceGrid>
-        {filteredServices.map((service) => (
-          <ServiceCard
-            key={service.id}
-            service={service}
-            onInstall={handleInstall}
-            onLearnMore={handleLearnMore}
-          />
-        ))}
-      </ServiceGrid>
-    </div>
+        <ServiceGrid>
+          {filteredServices.map((service) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              onInstall={handleInstall}
+              onLearnMore={(id) => console.log("Learn more:", id)}
+            />
+          ))}
+        </ServiceGrid>
+      </div>
+      <InstallationModal />
+    </>
   );
 }

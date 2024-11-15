@@ -40,3 +40,28 @@ export interface ConfigField {
 export interface InstallationConfig {
   [key: string]: string | number | boolean
 }
+
+interface PortainerService {
+  executeCommand: (command: string) => Promise<void>;
+  checkHealth: (serviceId: string) => Promise<HealthStatus>;
+  monitorResources: (serviceId: string) => Promise<ResourceMetrics>;
+}
+
+interface MonitoringProps {
+  serviceId: string;
+  onHealthChange: (status: HealthStatus) => void;
+  onResourceUpdate: (metrics: ResourceMetrics) => void;
+}
+
+interface ThemeProps {
+  theme: 'light' | 'dark';
+  setTheme: (theme: 'light' | 'dark') => void;
+}
+
+interface CommandExecutor {
+  execute: (command: string) => Promise<{
+    success: boolean;
+    output: string;
+    error?: string;
+  }>;
+}
