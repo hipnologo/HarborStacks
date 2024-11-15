@@ -1,3 +1,4 @@
+// components/services/service-grid
 'use client'
 
 import { ServiceCard } from './service-card'

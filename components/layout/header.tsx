@@ -1,7 +1,7 @@
 'use client'
 
 import { Package } from 'lucide-react'
-import { ThemeToggle } from '@/components/theme-toggle'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 

@@ -7,14 +7,14 @@ export interface ServiceCategory {
 }
 
 export interface Service {
-  id: string
-  name: string
-  description: string
-  category: string
-  popular?: boolean
-  requirements: string[]
-  configSteps: ConfigStep[]
-  installSteps: string[]
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  popular?: boolean;
+  requirements: string[]; // Updated from requiresConfig
+  configSteps?: ConfigStep[]; 
+  installSteps?: string[]; 
 }
 
 export interface ConfigStep {
@@ -35,4 +35,8 @@ export interface ConfigField {
     max?: number
     message?: string
   }
+}
+
+export interface InstallationConfig {
+  [key: string]: string | number | boolean
 }

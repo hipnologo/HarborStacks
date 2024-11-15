@@ -19,10 +19,24 @@ export default function LoginPage() {
 
   const onSubmit = async (data: LoginForm) => {
     try {
-      // Add your authentication logic here
-      router.push('/dashboard')
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!res.ok) {
+        throw new Error('Invalid credentials');
+      }
+  
+      const { token } = await res.json();
+      document.cookie = `auth_token=${token}; path=/`;
+  
+      router.push('/dashboard');
     } catch (err) {
-      setError('Invalid credentials')
+      setError('Invalid credentials');
     }
   }
 

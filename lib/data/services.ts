@@ -15,7 +15,7 @@ export const services: Service[] = [
     name: "Traefik & Portainer",
     description: "Modern reverse proxy and container management with automatic SSL",
     category: "security",
-    requiresConfig: ["domain", "email"],
+    requirements: ["domain", "email"],
     popular: true,
   },
   {
@@ -23,7 +23,7 @@ export const services: Service[] = [
     name: "Chatwoot",
     description: "Open-source customer engagement suite with live chat and email support",
     category: "messaging",
-    requiresConfig: ["domain", "email", "smtp"],
+    requirements: ["domain", "email", "smtp"],
     popular: true,
   },
   {
@@ -31,7 +31,7 @@ export const services: Service[] = [
     name: "MinIO",
     description: "High-performance S3 compatible object storage for modern data lakes",
     category: "databases",
-    requiresConfig: ["domain"],
+    requirements: ["domain"],
     popular: false,
   },
   {
@@ -39,7 +39,7 @@ export const services: Service[] = [
     name: "n8n",
     description: "Powerful workflow automation tool with visual programming",
     category: "automation",
-    requiresConfig: ["domain", "smtp"],
+    requirements: ["domain", "smtp"],
     popular: true,
   },
   {
@@ -47,7 +47,7 @@ export const services: Service[] = [
     name: "Prometheus Stack",
     description: "Complete monitoring solution with Grafana dashboards",
     category: "monitoring",
-    requiresConfig: ["domain"],
+    requirements: ["domain"],
     popular: true,
   },
   {
@@ -55,7 +55,7 @@ export const services: Service[] = [
     name: "PostgreSQL",
     description: "Advanced open-source database with automatic backups",
     category: "databases",
-    requiresConfig: ["password", "backup_path"],
+    requirements: ["password", "backup_path"],
     popular: true,
   }
 ];

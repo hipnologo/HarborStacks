@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { useInstallation } from '@/lib/hooks/use-installation'
+import { useInstallation } from '@/hooks/use-installation'
 import type { Service } from '@/lib/types/services'
 import { Package, ArrowRight } from 'lucide-react'
 
