@@ -9,18 +9,19 @@ export function Header() {
   const router = useRouter()
 
   return (
-    <header className="h-16 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
-      <div className="h-full container mx-auto px-4 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <Package className="h-6 w-6 text-blue-500" />
-          <h1 className="text-xl font-bold">HarborStacks</h1>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container h-14 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Package className="h-6 w-6 text-primary" />
+          <span className="font-semibold">HarborStacks</span>
         </div>
         
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
           <ThemeToggle />
           <Button
             variant="ghost"
-            onClick={() => router.push('/auth/login')}
+            size="sm"
+            onClick={() => router.push('/auth/logout')}
           >
             Logout
           </Button>

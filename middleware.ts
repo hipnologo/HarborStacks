@@ -1,19 +1,22 @@
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
-  const isAuthenticated = request.cookies.get('auth_token')
+export async function middleware(request: NextRequest) {
+  const res = NextResponse.next()
+  const supabase = createMiddlewareClient({ req: request, res })
+  const { data: { session } } = await supabase.auth.getSession()
   const isAuthPage = request.nextUrl.pathname.startsWith('/auth')
 
-  if (!isAuthenticated && !isAuthPage) {
+  if (!session && !isAuthPage) {
     return NextResponse.redirect(new URL('/auth/login', request.url))
   }
 
-  if (isAuthenticated && isAuthPage) {
+  if (session && isAuthPage) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
-  return NextResponse.next()
+  return res
 }
 
 export const config = {
