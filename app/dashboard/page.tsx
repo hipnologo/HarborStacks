@@ -5,7 +5,7 @@ import { ServiceGrid } from '@/components/services/service-grid'
 import { CategoryFilter } from '@/components/services/category-filter'
 import { InstallationModal } from '@/components/installers/installation-modal'
 import { useInstallation } from '@/lib/context/installation'
-import { services } from '@/lib/data/services'
+import { services, categories } from '@/lib/data/services'  // Add categories import
 
 export default function DashboardPage() {
   const { startInstallation } = useInstallation()
@@ -17,6 +17,10 @@ export default function DashboardPage() {
       startInstallation(service)
     }
   }
+
+  const filteredServices = services.filter(service => 
+    selectedCategory === 'all' || service.category === selectedCategory
+  )
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -30,12 +34,12 @@ export default function DashboardPage() {
       </div>
       
       <CategoryFilter 
+        categories={categories}
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
       />
       <ServiceGrid 
-        services={services}
-        selectedCategory={selectedCategory}
+        services={filteredServices}
         onInstall={handleInstall}
       />
       <InstallationModal />
