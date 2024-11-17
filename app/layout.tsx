@@ -1,8 +1,12 @@
 import { Providers } from './providers'
-import { InstallationProvider } from '@/lib/context/installation'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
+
+export const metadata = {
+  title: 'HarborStacks - Docker Service Installer',
+  description: 'Deploy containerized services with ease',
+}
 
 export default function RootLayout({
   children,
@@ -11,14 +15,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased min-h-screen bg-background`}>
-        <Providers>
-          <InstallationProvider>
-            <div className="relative flex min-h-screen flex-col">
-              {children}
-            </div>
-          </InstallationProvider>
-        </Providers>
+      <body className={inter.className}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

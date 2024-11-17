@@ -1,64 +1,66 @@
-'use client';
+'use client'
 
-import { createContext, useContext, useState } from 'react';
-import type { Service } from '@/lib/types/services';
+import React, { createContext, useContext, useState } from 'react'
+import type { Service } from '@/lib/types/services'
 
-interface InstallationContextType {
-  currentService: Service | null;
-  status: Record<number, {
-    status: 'waiting' | 'active' | 'complete' | 'error';
-    message?: string;
-  }>;
-  startInstallation: (service: Service) => void;
-  cancelInstallation: () => void;
-  updateStatus: (step: number, status: string, message?: string) => void;
+interface InstallationStatus {
+  step: number
+  status: 'waiting' | 'active' | 'complete' | 'error'
+  message?: string
 }
 
-const InstallationContext = createContext<InstallationContextType | undefined>(undefined);
+interface InstallationContextType {
+  currentService: Service | null
+  status: Record<number, InstallationStatus>
+  startInstallation: (service: Service) => void
+  cancelInstallation: () => void
+  setInstallationStatus: (step: number, status: InstallationStatus) => void
+}
+
+const InstallationContext = createContext<InstallationContextType | undefined>(undefined)
 
 export function InstallationProvider({ children }: { children: React.ReactNode }) {
-  const [currentService, setCurrentService] = useState<Service | null>(null);
-  const [status, setStatus] = useState<Record<number, any>>({});
+  const [currentService, setCurrentService] = useState<Service | null>(null)
+  const [status, setStatus] = useState<Record<number, InstallationStatus>>({})
 
   const startInstallation = (service: Service) => {
-    setCurrentService(service);
-    // Initialize status for all installation steps
-    const initialStatus = (service.installSteps || []).reduce((acc, _, index) => {
-      acc[index] = { status: 'waiting' };
-      return acc;
-    }, {} as Record<number, any>);
-    setStatus(initialStatus);
-  };
+    setCurrentService(service)
+    setStatus({
+      0: { step: 0, status: 'waiting', message: 'Starting installation...' }
+    })
+  }
 
   const cancelInstallation = () => {
-    setCurrentService(null);
-    setStatus({});
-  };
+    setCurrentService(null)
+    setStatus({})
+  }
 
-  const updateStatus = (step: number, status: string, message?: string) => {
+  const setInstallationStatus = (step: number, status: InstallationStatus) => {
     setStatus(prev => ({
       ...prev,
-      [step]: { status, message }
-    }));
-  };
+      [step]: status
+    }))
+  }
 
   return (
-    <InstallationContext.Provider value={{
-      currentService,
-      status,
-      startInstallation,
-      cancelInstallation,
-      updateStatus
-    }}>
+    <InstallationContext.Provider
+      value={{
+        currentService,
+        status,
+        startInstallation,
+        cancelInstallation,
+        setInstallationStatus
+      }}
+    >
       {children}
     </InstallationContext.Provider>
-  );
+  )
 }
 
 export function useInstallation() {
-  const context = useContext(InstallationContext);
+  const context = useContext(InstallationContext)
   if (context === undefined) {
-    throw new Error('useInstallation must be used within an InstallationProvider');
+    throw new Error('useInstallation must be used within an InstallationProvider')
   }
-  return context;
+  return context
 }
