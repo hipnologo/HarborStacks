@@ -11,6 +11,7 @@ export interface Service {
   name: string;
   description: string;
   category: string;
+  image?: string
   popular?: boolean;
   requirements: string[]; // Updated from requiresConfig
   configSteps?: ConfigStep[]; 

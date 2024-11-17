@@ -19,6 +19,7 @@ export interface BackupConfig {
 }
 
 export type Settings = {
+  theme: 'light' | 'dark' | 'system';
   portainer: PortainerConfig;
   global: GlobalConfig;
   backup: BackupConfig;

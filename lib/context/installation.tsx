@@ -1,64 +1,50 @@
-'use client';
+// lib/context/installation.tsx
+'use client'
 
-import { createContext, useContext, useState } from 'react';
-import type { Service } from '@/lib/types/services';
+import { createContext, useContext, useState } from 'react'
+import type { Service } from '@/lib/types/services'
 
 interface InstallationContextType {
-  currentService: Service | null;
-  status: Record<number, {
-    status: 'waiting' | 'active' | 'complete' | 'error';
-    message?: string;
-  }>;
-  startInstallation: (service: Service) => void;
-  cancelInstallation: () => void;
-  updateStatus: (step: number, status: string, message?: string) => void;
+  isInstalling: boolean
+  currentService: Service | null
+  startInstallation: (service: Service) => void
+  stopInstallation: () => void
 }
 
-const InstallationContext = createContext<InstallationContextType | undefined>(undefined);
+const InstallationContext = createContext<InstallationContextType | undefined>(undefined)
 
 export function InstallationProvider({ children }: { children: React.ReactNode }) {
-  const [currentService, setCurrentService] = useState<Service | null>(null);
-  const [status, setStatus] = useState<Record<number, any>>({});
+  const [isInstalling, setIsInstalling] = useState(false)
+  const [currentService, setCurrentService] = useState<Service | null>(null)
 
   const startInstallation = (service: Service) => {
-    setCurrentService(service);
-    // Initialize status for all installation steps
-    const initialStatus = (service.installSteps || []).reduce((acc, _, index) => {
-      acc[index] = { status: 'waiting' };
-      return acc;
-    }, {} as Record<number, any>);
-    setStatus(initialStatus);
-  };
+    setCurrentService(service)
+    setIsInstalling(true)
+  }
 
-  const cancelInstallation = () => {
-    setCurrentService(null);
-    setStatus({});
-  };
+  const stopInstallation = () => {
+    setCurrentService(null)
+    setIsInstalling(false)
+  }
 
-  const updateStatus = (step: number, status: string, message?: string) => {
-    setStatus(prev => ({
-      ...prev,
-      [step]: { status, message }
-    }));
-  };
+  const value = {
+    isInstalling,
+    currentService,
+    startInstallation,
+    stopInstallation,
+  }
 
   return (
-    <InstallationContext.Provider value={{
-      currentService,
-      status,
-      startInstallation,
-      cancelInstallation,
-      updateStatus
-    }}>
+    <InstallationContext.Provider value={value}>
       {children}
     </InstallationContext.Provider>
-  );
+  )
 }
 
 export function useInstallation() {
-  const context = useContext(InstallationContext);
-  if (context === undefined) {
-    throw new Error('useInstallation must be used within an InstallationProvider');
+  const context = useContext(InstallationContext)
+  if (!context) {
+    throw new Error('useInstallation must be used within an InstallationProvider')
   }
-  return context;
+  return context
 }

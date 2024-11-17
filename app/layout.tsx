@@ -1,8 +1,7 @@
 // app/layout.tsx
 import { Providers } from './providers'
-import { InstallationProvider } from '@/lib/context/installation'
 import { Inter } from 'next/font/google'
-import '../styles/globals.css'
+import '@/styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,13 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased min-h-screen bg-background`}>
+      <body className={inter.className}>
         <Providers>
-          <InstallationProvider>
-            <div className="relative flex min-h-screen flex-col">
-              {children}
-            </div>
-          </InstallationProvider>
+          {children}
         </Providers>
       </body>
     </html>

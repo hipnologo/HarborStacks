@@ -1,84 +1,79 @@
+const { fontFamily } = require("tailwindcss/defaultTheme")
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"], // Enables dark mode by toggling the 'dark' class
+  darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}', // Includes all pages for Tailwind processing
-    './components/**/*.{ts,tsx}', // Includes all components
-    './app/**/*.{ts,tsx}', // Includes Next.js app directory
-    './styles/**/*.css'    // Include the styles directory
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
   theme: {
     container: {
-      center: true, // Centers container elements
-      padding: "2rem", // Adds padding for responsiveness
+      center: true,
+      padding: "2rem",
       screens: {
-        "2xl": "1400px", // Maximum width for larger screens
+        "2xl": "1400px",
       },
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))", // Dynamic border color
-        input: "hsl(var(--input))", // Dynamic input background
-        ring: "hsl(var(--ring))", // Dynamic ring color for focus
-        background: "hsl(var(--background))", // Background color
-        foreground: "hsl(var(--foreground))", // Text foreground color
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))", // Main theme color
-          foreground: "hsl(var(--primary-foreground))", // Primary text
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))", // Secondary theme
+          DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))", // Destructive actions
+          DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))", // Muted colors for subtle text
+          DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))", // Accent colors for emphasis
+          DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))", // Popover background
+          DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "hsl(var(--card))", // Card background
+          DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
       },
       borderRadius: {
-        lg: "var(--radius)", // Customizable large radius
-        md: "calc(var(--radius) - 2px)", // Medium radius
-        sm: "calc(var(--radius) - 4px)", // Small radius
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 }, // Accordion open animation
+          from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" }, // Accordion close animation
+          from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out", // Smooth open
-        "accordion-up": "accordion-up 0.2s ease-out", // Smooth close
-      },
-      spacing: {
-        'header': 'var(--header-height)', // Dynamic header spacing
-        'sidebar': 'var(--sidebar-width)', // Dynamic sidebar width
-      },
-      maxWidth: {
-        'sidebar': 'var(--sidebar-width)', // Sidebar max width
-      },
-      minHeight: {
-        'content': 'calc(100vh - var(--header-height))', // Content height based on header
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
@@ -86,6 +81,5 @@ module.exports = {
     require("tailwindcss-animate"), // Adds animation utilities
     require('@tailwindcss/forms'), // Improves form styles
     require('@tailwindcss/typography'), // Enhances text readability
-    require('@tailwindcss/forms'), 
-  ],
-};
+  ]
+}
