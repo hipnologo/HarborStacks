@@ -21,6 +21,7 @@ export function InstallProgress({ steps, status, onRetry }: InstallProgressProps
 
   // Monitor for errors and show toast notifications
   useEffect(() => {
+    if (!status) return
     Object.entries(status).forEach(([step, info]) => {
       if (info.status === 'error' && info.message) {
         toast({
@@ -33,9 +34,13 @@ export function InstallProgress({ steps, status, onRetry }: InstallProgressProps
   }, [status, toast])
 
   // Find the first error step if any
-  const errorStep = Object.entries(status).find(
+  const errorStep = status ? Object.entries(status).find(
     ([_, info]) => info.status === 'error'
-  )
+  ) : null
+
+  if (!status) {
+    return null
+  }
 
   return (
     <div className="space-y-6">

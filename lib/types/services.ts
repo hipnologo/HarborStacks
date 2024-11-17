@@ -1,21 +1,29 @@
-import { LucideIcon } from "lucide-react";
+import { LucideIcon } from "lucide-react"
 
 export interface ServiceCategory {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+  id: string
+  label: string
+  icon: LucideIcon
+  description?: string
 }
 
 export interface Service {
-  id: string;
-  name: string;
-  description: string;
-  category: string;
+  id: string
+  name: string
+  description: string
+  category: string
   image?: string
-  popular?: boolean;
-  requirements: string[]; // Updated from requiresConfig
-  configSteps?: ConfigStep[]; 
-  installSteps?: string[]; 
+  popular?: boolean
+  documentation?: string
+  requirements: string[]
+  configSteps?: ConfigStep[]
+  installSteps?: InstallStep[]
+  ports?: PortConfig[]
+  volumes?: VolumeConfig[]
+  environment?: EnvironmentConfig[]
+  dependencies?: string[]
+  resources?: ResourceLimits
+  healthCheck?: HealthCheckConfig
 }
 
 export interface ConfigStep {
@@ -27,42 +35,91 @@ export interface ConfigStep {
 export interface ConfigField {
   name: string
   label: string
-  type: 'text' | 'email' | 'password' | 'number'
+  type: 'text' | 'email' | 'password' | 'number' | 'select' | 'toggle'
   placeholder?: string
   required?: boolean
+  options?: { label: string; value: string }[]
   validation?: {
     pattern?: string
     min?: number
     max?: number
     message?: string
   }
+  defaultValue?: string | number | boolean
+}
+
+export interface InstallStep {
+  id: string
+  title: string
+  description?: string
+  status: 'pending' | 'running' | 'completed' | 'failed'
+  command?: string
+}
+
+export interface PortConfig {
+  container: number
+  host?: number
+  protocol?: 'tcp' | 'udp'
+  description?: string
+}
+
+export interface VolumeConfig {
+  container: string
+  host?: string
+  mode?: 'rw' | 'ro'
+  description?: string
+}
+
+export interface EnvironmentConfig {
+  name: string
+  description?: string
+  required?: boolean
+  defaultValue?: string
+  sensitive?: boolean
+}
+
+export interface ResourceLimits {
+  cpu?: string
+  memory?: string
+  storage?: string
+}
+
+export interface HealthCheckConfig {
+  test: string[]
+  interval?: string
+  timeout?: string
+  retries?: number
+  startPeriod?: string
 }
 
 export interface InstallationConfig {
   [key: string]: string | number | boolean
 }
 
-interface PortainerService {
-  executeCommand: (command: string) => Promise<void>;
-  checkHealth: (serviceId: string) => Promise<HealthStatus>;
-  monitorResources: (serviceId: string) => Promise<ResourceMetrics>;
+export interface InstallationStatus {
+  status: 'pending' | 'installing' | 'completed' | 'failed'
+  currentStep?: string
+  error?: string
+  logs: string[]
 }
 
-interface MonitoringProps {
-  serviceId: string;
-  onHealthChange: (status: HealthStatus) => void;
-  onResourceUpdate: (metrics: ResourceMetrics) => void;
+export interface ServiceMetrics {
+  cpu: number
+  memory: number
+  network: {
+    rx: number
+    tx: number
+  }
+  storage: {
+    used: number
+    total: number
+  }
 }
 
-interface ThemeProps {
-  theme: 'light' | 'dark';
-  setTheme: (theme: 'light' | 'dark') => void;
-}
+export type HealthStatus = 'healthy' | 'unhealthy' | 'starting' | 'unknown'
 
-interface CommandExecutor {
-  execute: (command: string) => Promise<{
-    success: boolean;
-    output: string;
-    error?: string;
-  }>;
+export interface ServiceState {
+  status: HealthStatus
+  metrics: ServiceMetrics
+  lastUpdated: Date
 }

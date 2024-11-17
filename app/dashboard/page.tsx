@@ -81,6 +81,10 @@ export default function DashboardPage() {
     startInstallation(service)
   }
 
+  const handleReadMore = (service: Service) => {
+    setSelectedService(service)
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -89,16 +93,16 @@ export default function DashboardPage() {
       className="space-y-8"
     >
       <div>
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <h1 className="text-3xl font-bold">Available Stacks</h1>
         <p className="text-muted-foreground">
-          Manage your container infrastructure
+          Deploy and manage your container stacks
         </p>
       </div>
 
       <StackGrid
         services={services}
         onInstall={handleInstall}
-        onDetails={setSelectedService}
+        onDetails={handleReadMore}
       />
 
       <StackDetailsModal
