@@ -1,20 +1,61 @@
-import { ServiceGrid } from '@/components/services/service-grid'
-import { CategoryFilter } from '@/components/services/category-filter'
+'use client'
+
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { StackGrid } from '@/components/services/stack-grid'
+import { StackDetailsModal } from '@/components/services/stack-details-modal'
+import { InstallationModal } from '@/components/installers/installation-modal'
+import { useInstallation } from '@/lib/context/installation'
+import { services } from '@/lib/data/services'
+import type { Service } from '@/lib/types/services'
 
 export default function DashboardPage() {
+  const { startInstallation } = useInstallation()
+  const [selectedService, setSelectedService] = useState<Service | null>(null)
+
+  const handleInstall = (service: Service) => {
+    setSelectedService(null)
+    startInstallation(service)
+  }
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-          Docker Service Installer
-        </h1>
-        <p className="text-gray-600 dark:text-gray-300">
-          Deploy containerized services with ease
-        </p>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="space-y-8"
+    >
+      <div>
+        <motion.h1
+          initial={{ y: -20 }}
+          animate={{ y: 0 }}
+          className="text-4xl font-bold"
+        >
+          Available Stacks
+        </motion.h1>
+        <motion.p
+          initial={{ y: -20 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="text-muted-foreground"
+        >
+          Select a stack to deploy to your infrastructure
+        </motion.p>
       </div>
-      
-      <CategoryFilter />
-      <ServiceGrid />
-    </div>
+
+      <StackGrid
+        services={services}
+        onInstall={handleInstall}
+        onDetails={setSelectedService}
+      />
+
+      <StackDetailsModal
+        service={selectedService}
+        onClose={() => setSelectedService(null)}
+        onInstall={handleInstall}
+      />
+
+      <InstallationModal />
+    </motion.div>
   )
 }

@@ -49,6 +49,8 @@
   }
 }
 
+// ... existing styles ...
+
 @layer base {
   * {
     @apply border-border;
@@ -56,5 +58,34 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Add these new styles */
+  :root {
+    --header-height: 4rem;
+    --sidebar-width: 16rem;
+  }
+
+  /* Improved scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary/20;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-muted-foreground/30 hover:bg-muted-foreground/50 transition-colors;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
