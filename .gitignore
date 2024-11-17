@@ -163,3 +163,5 @@ temp/
 # Sitemap
 **/public/sitemap*.xml
 **/public/robots.txt
+
+project-bolt-*
