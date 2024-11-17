@@ -13,7 +13,6 @@ interface StackCardProps {
   onInstall: (service: Service) => void
   onDetails: (service: Service) => void
 }
-
 export function StackCard({ service, onInstall, onDetails }: StackCardProps) {
   return (
     <motion.div
