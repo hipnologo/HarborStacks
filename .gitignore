@@ -164,4 +164,14 @@ temp/
 **/public/sitemap*.xml
 **/public/robots.txt
 
+# Prisma
+prisma/*.db
+prisma/*.sqlite
+prisma/*.sqlite-journal
+*.db
+*.db-journal
+/prisma/migrations/
+.prisma/
+generated/
+
 project-bolt-*
