@@ -1,4 +1,4 @@
-.heroSection {
+/* .heroSection {
     background: linear-gradient(
       to bottom,
       hsl(var(--background)) 0%,
@@ -36,4 +36,24 @@
     background: hsl(var(--muted));
     border-radius: var(--radius);
     padding: 3rem;
+  } */
+
+  .heroSection {
+    @apply min-h-screen w-full bg-gradient-to-b from-background to-muted/30;
+  }
+  
+  .gradientText {
+    @apply bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent;
+  }
+  
+  .card {
+    @apply rounded-[--radius] border border-border bg-card p-8 transition-all duration-200 ease-in-out;
+  }
+  
+  .card:hover {
+    @apply -translate-y-0.5 shadow-lg;
+  }
+  
+  .ctaSection {
+    @apply rounded-[--radius] bg-muted p-12;
   }
