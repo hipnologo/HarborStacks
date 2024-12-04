@@ -1,10 +1,27 @@
 # HarborStacks 🚢
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+<div align="center">
+
+![SwarmVault Logo](https://user-images.githubusercontent.com/hipnologo/HarborStacks/HarborStacks-logo.png)
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/hipnologo/HarborStacks)](https://github.com/hipnologo/HarborStacks/releases)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![GitHub stars](https://img.shields.io/github/stars/hipnologo/HarborStacks)](https://github.com/hipnologo/HarborStacks/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/hipnologo/HarborStacks)](https://github.com/hipnologo/HarborStacks/issues)
+[![GitHub forks](https://img.shields.io/github/forks/hipnologo/HarborStacks)](https://github.com/hipnologo/HarborStacks/network)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38B2AC)](https://tailwindcss.com/)
 [![Node.js Version](https://img.shields.io/badge/node->=18-green)](https://nodejs.org)
+
+**Seamless Docker Swarm Backup & Migration Suite**
+
+[Key Features](#key-features) • [Quick Start](#quick-start) • [Documentation](#documentation) • [Contributing](#contributing) • [Support](#support)
+
+</div>
+
+## 📋 Overview
 
 HarborStacks is a modern, user-friendly web interface for deploying and managing Docker services through Portainer. It provides an intuitive installation wizard, real-time status updates, and comprehensive service management capabilities.
 
@@ -160,6 +177,14 @@ limitations under the License.
 - [![Build Status](https://img.shields.io/github/workflow/status/hipnologo/HarborStacks/CI)](https://github.com/hipnologo/HarborStacks/actions)
 - [![Coverage Status](https://img.shields.io/codecov/c/github/hipnologo/HarborStacks)](https://codecov.io/gh/hipnologo/HarborStacks)
 - [![Last Commit](https://img.shields.io/github/last-commit/hipnologo/HarborStacks)](https://github.com/hipnologo/HarborStacks/commits/main)
+
+## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=hipnologo/HarborStacks&type=Date)](https://star-history.com/#hipnologo/HarborStacks&Date)
+
+## 📊 Activity
+
+![Alt](https://repobeats.axiom.co/api/embed/your-activity-hash.svg "Repository activity graph")
 
 ---
 
