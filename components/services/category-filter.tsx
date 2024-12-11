@@ -2,10 +2,10 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { ServiceCategory } from '@/lib/types/services' // Add this import
+import { ServiceCategory } from '@/lib/types/services'
 
 interface CategoryFilterProps {
-  categories: ServiceCategory[]  // Change this from string[] to ServiceCategory[]
+  categories: ServiceCategory[]
   selectedCategory: string
   onSelectCategory: (category: string) => void
 }
@@ -23,15 +23,19 @@ export function CategoryFilter({
       >
         All
       </Button>
-      {categories.map((category) => (
-        <Button
-          key={category.id}  // Use category.id as the key
-          variant={selectedCategory === category.id ? 'default' : 'outline'}
-          onClick={() => onSelectCategory(category.id)}
-        >
-          {category.name}  // Display category.name
-        </Button>
-      ))}
+      {categories.map((category) => {
+        const Icon = category.icon;
+        return (
+          <Button
+            key={category.id}
+            variant={selectedCategory === category.id ? 'default' : 'outline'}
+            onClick={() => onSelectCategory(category.id)}
+          >
+            <Icon className="mr-2 h-4 w-4" />
+            {category.label}
+          </Button>
+        );
+      })}
     </div>
   )
 }

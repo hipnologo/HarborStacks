@@ -1,3 +1,4 @@
+// lib/types/services.ts
 import { LucideIcon } from "lucide-react";
 
 export interface ServiceCategory {

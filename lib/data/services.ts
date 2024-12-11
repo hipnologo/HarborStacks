@@ -1,3 +1,4 @@
+// lib/data/services.ts
 import { Database, Cloud, Monitor, Lock, Package, Boxes } from "lucide-react";
 import { ServiceCategory, Service } from "@/lib/types/services";
 
