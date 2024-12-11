@@ -1,9 +1,11 @@
+// components/services/category-filter.tsx
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { ServiceCategory } from '@/lib/types/services' // Add this import
 
 interface CategoryFilterProps {
-  categories: string[]
+  categories: ServiceCategory[]  // Change this from string[] to ServiceCategory[]
   selectedCategory: string
   onSelectCategory: (category: string) => void
 }
@@ -23,11 +25,11 @@ export function CategoryFilter({
       </Button>
       {categories.map((category) => (
         <Button
-          key={category}
-          variant={selectedCategory === category ? 'default' : 'outline'}
-          onClick={() => onSelectCategory(category)}
+          key={category.id}  // Use category.id as the key
+          variant={selectedCategory === category.id ? 'default' : 'outline'}
+          onClick={() => onSelectCategory(category.id)}
         >
-          {category}
+          {category.name}  // Display category.name
         </Button>
       ))}
     </div>
