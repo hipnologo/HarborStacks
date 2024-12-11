@@ -1,3 +1,4 @@
+// components/installers/install-progress.tsx
 'use client'
 
 import { useEffect } from 'react'
@@ -6,20 +7,17 @@ import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/hooks/use-toast'
 import { RefreshCw, AlertCircle } from 'lucide-react'
+import { StepState } from './types'
 
 interface InstallProgressProps {
   steps: string[]
-  status: Record<number, {
-    status: 'waiting' | 'active' | 'complete' | 'error'
-    message?: string
-  }>
+  status: Record<number, StepState>
   onRetry?: (step: number) => void
 }
 
 export function InstallProgress({ steps, status, onRetry }: InstallProgressProps) {
   const { toast } = useToast()
 
-  // Monitor for errors and show toast notifications
   useEffect(() => {
     Object.entries(status).forEach(([step, info]) => {
       if (info.status === 'error' && info.message) {
@@ -32,7 +30,6 @@ export function InstallProgress({ steps, status, onRetry }: InstallProgressProps
     })
   }, [status, toast])
 
-  // Find the first error step if any
   const errorStep = Object.entries(status).find(
     ([_, info]) => info.status === 'error'
   )

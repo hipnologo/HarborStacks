@@ -1,11 +1,9 @@
+// components/installers/progress-tracker.tsx
 'use client'
 
-import { Check, Loader2, AlertCircle } from 'lucide-react'
+import { ProgressTrackerProps } from "./types"
 
-interface ProgressTrackerProps {
-  steps: string[]
-  status: Record<number, 'waiting' | 'active' | 'complete' | 'error'>
-}
+// import { Check, Loader2, AlertCircle } from 'lucide-react'
 
 export function ProgressTracker({ steps, status }: ProgressTrackerProps) {
   return (
