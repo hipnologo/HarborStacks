@@ -1,3 +1,4 @@
+// components/installers/preflight-checks.tsx
 'use client'
 
 import { Check, Loader2, AlertCircle } from 'lucide-react'

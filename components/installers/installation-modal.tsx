@@ -1,3 +1,4 @@
+// components/installers/installation-modal.tsx
 'use client'
 
 import { useState } from 'react'
