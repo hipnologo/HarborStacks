@@ -1,19 +1,18 @@
+// components/services/service-card.tsx
 'use client'
 
-import { useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { useInstallation } from '@/hooks/use-installation'
 import type { Service } from '@/lib/types/services'
 import { Package, ArrowRight } from 'lucide-react'
 
 interface ServiceCardProps {
   service: Service
+  onInstall: () => void
+  onLearnMore?: () => void
 }
 
-export function ServiceCard({ service }: ServiceCardProps) {
-  const { startInstallation } = useInstallation()
-
+export function ServiceCard({ service, onInstall, onLearnMore }: ServiceCardProps) {
   return (
     <Card className="p-6">
       <div className="flex justify-between items-start mb-4">
@@ -45,15 +44,17 @@ export function ServiceCard({ service }: ServiceCardProps) {
 
       <div className="flex space-x-3">
         <Button 
-          onClick={() => startInstallation(service)}
+          onClick={onInstall}
           className="flex-1 flex items-center justify-center"
         >
           <span>Install</span>
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
-        <Button variant="outline">
-          Learn more
-        </Button>
+        {onLearnMore && (
+          <Button variant="outline" onClick={onLearnMore}>
+            Learn more
+          </Button>
+        )}
       </div>
     </Card>
   )
