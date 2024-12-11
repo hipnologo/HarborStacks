@@ -1,8 +1,10 @@
+// components/services/search-header.tsx
+
 'use client';
 
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { SearchHeaderProps } from '@/lib/types/props'; // Import props type
+import { SearchHeaderProps } from '@/lib/types/props';
 
 export function SearchHeader({ searchQuery, onSearchChange }: SearchHeaderProps) {
   return (
